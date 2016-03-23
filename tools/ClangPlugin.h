@@ -34,12 +34,13 @@ namespace clad {
     struct DifferentiationOptions {
       DifferentiationOptions()
         : DumpSourceFn(false), DumpSourceFnAST(false), DumpDerivedFn(false),
-          DumpDerivedAST(false), GenerateSourceFile(false) { }
+          DumpDerivedAST(false), DumpDerivedOpenCL(false), GenerateSourceFile(false) { }
 
       bool DumpSourceFn : 1;
       bool DumpSourceFnAST : 1;
       bool DumpDerivedFn : 1;
       bool DumpDerivedAST : 1;
+      bool DumpDerivedOpenCL : 1;
       bool GenerateSourceFile : 1;
     };
 
@@ -89,6 +90,9 @@ namespace clad {
           else if (args[i] == "-fdump-derived-fn-ast") {
             m_DO.DumpDerivedAST = true;
           }
+          else if (args[i] == "-fdump-derived-OpenCL") {
+            m_DO.DumpDerivedOpenCL= true;
+          }
           else if (args[i] == "-fgenerate-source-file") {
             m_DO.GenerateSourceFile = true;
           }
@@ -100,6 +104,7 @@ namespace clad {
               "-fdump-source-fn-ast - Prints out the AST of the function.\n" <<
               "-fdump-derived-fn - Prints out the source code of the derivative.\n" <<
               "-fdump-derived-fn-ast - Prints out the AST of the derivative.\n" <<
+              "-fdump-derived-OpenCL" <<
               "-fgenerate-source-file - Produces a file containing the derivatives.\n";
 
             llvm::errs() << "-help - Prints out this screen.\n\n";

@@ -17,6 +17,7 @@ add_clad_library(cladDifferentiator
   ConstantFolder.cpp
   DerivativeBuilder.cpp
   DiffPlanner.cpp
+  OpenCLGen.cpp
   StmtClone.cpp
   Version.cpp
   )

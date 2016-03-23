@@ -8,6 +8,7 @@
 
 #include "clad/Differentiator/DerivativeBuilder.h"
 #include "clad/Differentiator/DiffPlanner.h"
+#include "clad/Differentiator/OpenCLGen.h"
 
 #include "clad/Differentiator/Version.h"
 
@@ -150,6 +151,11 @@ namespace clad {
             if (m_DO.DumpDerivedAST) {
                Derivative->dumpColor();
             }
+            if (m_DO.DumpDerivedOpenCL) {
+                OpenCLGen O(Derivative);
+                printf("%s", O.generate().c_str());
+            }
+
             // if enabled, print the derivatives in a file.
             if (m_DO.GenerateSourceFile) {
                std::string err;
